@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""this module creates a class called User"""
+"""This module defines a class User"""
 from models.base_model import BaseModel
-
+from sqlalchemy import Column, String
 
 class User(BaseModel):
-    """A class that inherits from User"""
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+    """This class defines a user by various attributes"""
+    __tablename__ = 'users'
+    email = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False)
+    first_name = Column(String(128), nullable=False)
+    last_name = Column(String(128), nullable=False)
 
