@@ -1,11 +1,15 @@
-
 #!/usr/bin/python3
-"""A module for the city class """
-from .base_model import BaseModel
+""" City Module for HBNB project """
+from models.base_model import BaseModel
+from models.base_model import Base
+from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class City(BaseModel):
-    """city class to indicate the city and it is a subclass of Basemodel"""
-    state_id = ""
-    name = ""
+class City(BaseModel, Base):
+    """ The city class, contains state ID and name """
+    __tablename__ = "cities"
+    name = Column(String(128), nullable=False)
+    state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
+    state = relationship("State", back_populates="cities")
 

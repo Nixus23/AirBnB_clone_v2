@@ -1,7 +1,15 @@
 #!/usr/bin/python3
-"""it initialises the file storage for the application"""
-from .engine import file_storage
+"""This module allows switching of storage types"""
+from os import getenv
 
 
-storage = file_storage.FileStorage()
-storage.reload()
+storage_type = getenv("HBNB_TYPE_STORAGE")
+if storage_type == "db":
+    from models.engine.db_storage import DBStorage
+    storage = DBStorage()
+    storage.reload()
+else:
+    from models.engine.file_storage import FileStorage
+    storage = FileStorage()
+    storage.reload()
+
